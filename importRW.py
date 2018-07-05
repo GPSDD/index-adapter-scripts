@@ -33,6 +33,5 @@ with open('datasetsRW.csv')as csvfile:
                 print('Sleeping...')
                 time.sleep(2)
 
-
         print(name, code, status)
     exit(0)

@@ -1,10 +1,12 @@
 import json
-import requests
-import time
-import os
 import multiprocessing as mp
-from utils import post, get
+import os
+import time
+
+import requests
 from dotenv import load_dotenv
+
+from utils import post, get
 
 load_dotenv()
 
@@ -13,12 +15,19 @@ api_url = os.getenv("HOST")
 
 headers = {'User-Agent': 'python-requests', 'Content-Type': 'application/json'}
 hdxPackageListResult = requests.get('https://data.humdata.org/api/3/action/package_list', headers=headers)
-
 HDXPackages = json.loads(hdxPackageListResult.text)
+
+apiHDXDatasetResponse = get(payload={}, endpoint='v1/dataset?provider=hdx&page[size]=10000', api_url=api_url,
+                           api_token=api_token)
+apiHDXDatasetList = list(map(lambda x: x['attributes']['tableName'], apiHDXDatasetResponse['data']))
 
 
 def add_dataset(packageName):
-    print(packageName)
+    if packageName in apiHDXDatasetList:
+        print('Dataset ' + packageName + ' already exists, skipping...')
+        return
+
+    print('Adding dataset ' + packageName)
 
     result = post(
         payload={
@@ -41,9 +50,7 @@ def add_dataset(packageName):
     print(packageName, result)
 
 
-
 pool = mp.Pool(processes=4)
 pool.map(add_dataset, HDXPackages['result'])
-
 
 exit(0)

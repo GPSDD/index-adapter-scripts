@@ -22,7 +22,7 @@ def add_dataset(dataset):
 
     result = post(
         payload={
-            "name": dataset,
+            "name": dataset['code'],
             "provider": "un",
             "connectorType": "rest",
             "tableName": dataset['code']
@@ -41,9 +41,10 @@ def add_dataset(dataset):
     print(dataset, result)
 
 
+print('Datasets found:', len(UNPackages))
 
 pool = mp.Pool(processes=4)
-pool.map(add_dataset, UNPackages['result'])
+pool.map(add_dataset, UNPackages)
 
 
 exit(0)
