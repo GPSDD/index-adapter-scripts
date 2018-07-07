@@ -16,9 +16,17 @@ unPackageListResult = requests.get('https://unstats.un.org/SDGAPI/v1/sdg/Series/
 
 UNPackages = json.loads(unPackageListResult.text)
 
+apiUNDatasetResponse = get(payload={}, endpoint='v1/dataset?provider=un&page[size]=10000', api_url=api_url,
+                           api_token=api_token)
+apiUNDatasetList = list(map(lambda x: x['attributes']['tableName'], apiUNDatasetResponse['data']))
+
 
 def add_dataset(dataset):
-    print(dataset)
+    if dataset in apiUNDatasetList:
+        print('Dataset ' + dataset + ' already exists, skipping...')
+        return
+
+    print('Adding dataset ' + dataset)
 
     result = post(
         payload={
