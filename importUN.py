@@ -22,15 +22,15 @@ apiUNDatasetList = list(map(lambda x: x['attributes']['tableName'], apiUNDataset
 
 
 def add_dataset(dataset):
-    if dataset in apiUNDatasetList:
-        print('Dataset ' + dataset + ' already exists, skipping...')
+    if dataset['code'] in apiUNDatasetList:
+        print('Dataset ' + dataset['code'] + ' already exists, skipping...')
         return
 
-    print('Adding dataset ' + dataset)
+    print('Adding dataset ' + dataset['code'])
 
     result = post(
         payload={
-            "name": dataset['code'],
+            "name": dataset['description'],
             "provider": "un",
             "connectorType": "rest",
             "tableName": dataset['code']

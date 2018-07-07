@@ -9,7 +9,7 @@ load_dotenv()
 api_token = os.getenv("API_TOKEN")
 api_url = os.getenv("HOST")
 
-result = get({}, 'v1/dataset?page[size]=10000&provider=hdx', api_url, api_token)
+result = get({}, 'v1/dataset?page[size]=10000&provider=un', api_url, api_token)
 
 
 def delete_dataset(row):
