@@ -12,7 +12,7 @@ api_token = os.getenv("API_TOKEN")
 api_url = os.getenv("HOST")
 
 headers = {'User-Agent': 'python-requests', 'Content-Type': 'application/json'}
-unPackageListResult = requests.get('https://unstats.un.org/SDGAPI/v1/sdg/Series/List?allreleases=true', headers=headers)
+unPackageListResult = requests.get('https://unstats.un.org/SDGAPI/v1/sdg/Series/List?allreleases=false', headers=headers)
 
 UNPackages = json.loads(unPackageListResult.text)
 
