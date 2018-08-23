@@ -1,0 +1,13 @@
+{
+  "name": "index-adapter-scripts",
+  "version": "1.0.0",
+  "description": "node adapter scripts",
+  "main": "index.js",
+  "repository": "https://github.com/GPSDD/index-adapter-scripts/",
+  "author": "manuelnelson <elnels@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^6.0.0"
+  }
+}

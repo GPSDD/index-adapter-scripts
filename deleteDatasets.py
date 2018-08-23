@@ -9,7 +9,9 @@ load_dotenv()
 api_token = os.getenv("API_TOKEN")
 api_url = os.getenv("HOST")
 
-result = get({}, 'v1/dataset?page[size]=10000&provider=un', api_url, api_token)
+
+
+result = get({}, 'v1/dataset?page[size]=10&provider=un', api_url, api_token)
 
 
 def delete_dataset(row):
@@ -20,7 +22,8 @@ def delete_dataset(row):
 
 print("Dataset count:", len(result['data']))
 
-pool = mp.Pool(processes=4)
-pool.map(delete_dataset, result['data'])
+if __name__ ==  '__main__':
+    pool = mp.Pool(processes=1)
+    pool.map(delete_dataset, result['data'])
 
 exit(0)
