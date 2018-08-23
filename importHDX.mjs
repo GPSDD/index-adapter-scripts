@@ -48,7 +48,7 @@ async function runProcess() {
   
   //console.log(hdxResponse.data)                             
   let tableNames = hdxResponse.data.map(x => { return {tableName: x.attributes.tableName, id: x.id, connectorType: x.attributes.connectorType, name: x.attributes.name}})
-  let csvNames = csvResponse.data.map(x => { return {tableName: x.attributes.tableName, id: x.id, connectorType: x.attributes.connectorType, name: x.attributes.name}})
+  let csvNames = csvResponse.data.map(x => { return {tableName: x.attributes.tableName, id: x.id, connectorType: x.attributes.connectorType, name: x.attributes.name, status: x.attributes.status}})
   // console.log(hdxResponse.data[0])
   // var firstResult = humData.results[0];
   // await addDataset(firstResult.resources[0], tableNames, csvNames, firstResult);  
